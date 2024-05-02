@@ -35,7 +35,7 @@ async def convert_video(video_file, output_directory, total_time, bot, message, 
     # https://stackoverflow.com/a/13891070/4723940
     kk = video_file.split("/")[-1]
     aa = kk.split(".")[-1]
-    out_put_file_name = kk.replace(f".{aa}", "[ENCODED].mkv")
+    out_put_file_name = kk.replace(f".{aa}", "[iNsanePlay].mkv")
     #out_put_file_name = video_file + "_compressed" + ".mkv"
     progress = output_directory + "/" + "progress.txt"
     with open(progress, 'w') as f:
@@ -44,11 +44,11 @@ async def convert_video(video_file, output_directory, total_time, bot, message, 
     ##"-metadata", "title=@SenpaiAF", "-vf", "drawtext=fontfile=njnaruto.ttf:fontsize=20:fontcolor=black:x=15:y=15:text=" "Dark Encodes",
      ## -vf eq=gamma=1.4:saturation=1.4
      ## lol 😂
-    crf.append("28")
+    crf.append("30")
     codec.append("libx264")
-    resolution.append("1280x720")
+    resolution.append("854x480")
     preset.append("veryfast")
-    audio_b.append("35k")
+    audio_b.append("32k")
     file_genertor_command = f'ffmpeg -hide_banner -loglevel quiet -progress "{progress}" -i "{video_file}"  -c:v {codec[0]}  -map 0 -crf {crf[0]} -c:s copy -pix_fmt yuv420p -s {resolution[0]} -b:v 150k -c:a libopus -b:a {audio_b[0]} -preset {preset[0]}  "{out_put_file_name}" -y'
  #Done !!
     COMPRESSION_START_TIME = time.time()
@@ -133,7 +133,7 @@ async def convert_video(video_file, output_directory, total_time, bot, message, 
     r = stderr.decode()
     try:
         if er:
-           await message.edit_text(str(er) + "\n\n**ERROR** Contact @Chowdhury_Siam")
+           await message.edit_text(str(er) + "\n\n**ERROR** Contact @insanePlay")
            os.remove(videofile)
            os.remove(out_put_file_name)
            return None
